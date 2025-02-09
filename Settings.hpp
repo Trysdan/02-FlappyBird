@@ -11,21 +11,18 @@
 
 #pragma once
 
-#include <filesystem>
 #include <string>
 #include <unordered_map>
-
-namespace fs = std::filesystem;
 
 #include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 struct Settings
 {
-    static const fs::path ASSETS_PATH;
-    static const fs::path GRAPHICS_PATH;
-    static const fs::path SOUNDS_PATH;
-    static const fs::path FONTS_PATH;
+    static const std::string ASSETS_PATH;
+    static const std::string GRAPHICS_PATH;
+    static const std::string SOUNDS_PATH;
+    static const std::string FONTS_PATH;
 
     static constexpr int WINDOW_WIDTH{1280};
     static constexpr int WINDOW_HEIGHT{720};

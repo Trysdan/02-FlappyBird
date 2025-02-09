@@ -15,7 +15,7 @@ public:
     {
         static_assert(std::is_convertible<N1, float>::value, "Template argument N1 should be convertible to float.");
         static_assert(std::is_convertible<N2, float>::value, "Template argument N2 should be convertible to float.");
-        static_assert(std::is_constructible<T, float, float, Args...>::value);
+        static_assert(std::is_constructible<T, float, float, Args...>::value, "The inner class is not constructible by the given arguments");
 
         if (buffer.size() > 0)
         {

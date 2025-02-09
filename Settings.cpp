@@ -12,13 +12,17 @@
 
 #include <Settings.hpp>
 
-const fs::path Settings::ASSETS_PATH{"assets"};
+const std::string Settings::ASSETS_PATH{"assets/"};
 
-const fs::path Settings::GRAPHICS_PATH{Settings::ASSETS_PATH / "graphics"};
+const std::string Settings::GRAPHICS_PATH{Settings::ASSETS_PATH + "graphics/"};
 
-const fs::path Settings::SOUNDS_PATH{Settings::ASSETS_PATH / "sounds"};
+const std::string Settings::SOUNDS_PATH{Settings::ASSETS_PATH + "sounds/"};
 
-const fs::path Settings::FONTS_PATH{Settings::ASSETS_PATH / "fonts"};
+const std::string Settings::FONTS_PATH{Settings::ASSETS_PATH + "fonts/"};
+
+constexpr float Settings::BIRD_WIDTH;
+
+constexpr float Settings::BIRD_HEIGHT;
 
 std::unordered_map<std::string, sf::Texture> Settings::textures{};
 
@@ -41,28 +45,28 @@ void Settings::load_textures()
 {
     sf::Texture texture{};
 
-    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "bird.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH + "bird.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/bird.png"};
     }
 
     Settings::textures["bird"] = texture;
 
-    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "background.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH + "background.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/background.png"};
     }
 
     Settings::textures["background"] = texture;
 
-    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "ground.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH + "ground.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/ground.png"};
     }
 
     Settings::textures["ground"] = texture;
 
-    if (!texture.loadFromFile(Settings::GRAPHICS_PATH / "log.png"))
+    if (!texture.loadFromFile(Settings::GRAPHICS_PATH + "log.png"))
     {
         throw std::runtime_error{"Error loading texture graphics/log.png"};
     }
@@ -75,7 +79,7 @@ void Settings::load_sounds()
     sf::SoundBuffer buffer;
     sf::Sound sound;
     
-    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "jump.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH + "jump.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/jump.wav"};
     }
@@ -85,7 +89,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["jump"] = sound;
 
-    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "explosion.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH + "explosion.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/explosion.wav"};
     }
@@ -95,7 +99,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["explosion"] = sound;
 
-    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "hurt.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH + "hurt.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/hurt.wav"};
     }
@@ -105,7 +109,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["hurt"] = sound;
 
-    if (!buffer.loadFromFile(Settings::SOUNDS_PATH / "score.wav"))
+    if (!buffer.loadFromFile(Settings::SOUNDS_PATH + "score.wav"))
     {
         throw std::runtime_error{"Error loading sound sounds/score.wav"};
     }
@@ -115,7 +119,7 @@ void Settings::load_sounds()
     sound.setBuffer(result.first->second);
     Settings::sounds["score"] = sound;
 
-    if (!Settings::music.openFromFile(Settings::SOUNDS_PATH / "marios_way.ogg"))
+    if (!Settings::music.openFromFile(Settings::SOUNDS_PATH + "marios_way.ogg"))
     {
         throw std::runtime_error{"Error loading music sounds/marios_way.ogg"};
     }
@@ -125,14 +129,14 @@ void Settings::load_fonts()
 {
     sf::Font font;
 
-    if (!font.loadFromFile(Settings::FONTS_PATH / "font.ttf"))
+    if (!font.loadFromFile(Settings::FONTS_PATH + "font.ttf"))
     {
         throw std::runtime_error{"Error loading font fonts/font.ttf"};
     }
 
     Settings::fonts["font"] = font;
 
-    if (!font.loadFromFile(Settings::FONTS_PATH / "flappy.ttf"))
+    if (!font.loadFromFile(Settings::FONTS_PATH + "flappy.ttf"))
     {
         throw std::runtime_error{"Error loading font fonts/flappy.ttf"};
     }
