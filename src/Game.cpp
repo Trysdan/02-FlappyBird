@@ -96,3 +96,10 @@ void Game::exec() noexcept
         dt = clock.restart();
     }
 }
+
+Game::~Game() noexcept
+{
+    Settings::fonts.clear();
+    Settings::sounds.clear();
+    Settings::textures.clear();
+}

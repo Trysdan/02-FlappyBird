@@ -34,6 +34,8 @@ public:
 
     void exec() noexcept;
 
+    ~Game() noexcept;
+
 private:
     sf::RenderWindow render_window;
     sf::RenderTexture render_texture;
