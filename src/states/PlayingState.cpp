@@ -37,11 +37,12 @@ void PlayingState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _b
     {
         bird = _bird;
     }
+    selectedMode = std::make_unique<HardMode>(this);
 }
 
 void PlayingState::handle_inputs(const sf::Event& event) noexcept
 {
-    if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
+    /*if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left)
     {
         bird->jump();
     }
@@ -49,7 +50,8 @@ void PlayingState::handle_inputs(const sf::Event& event) noexcept
     if (Game::key_is_pressed() && event.key.code == sf::Keyboard::Return)
     {
         state_machine->change_state("pause", world, bird, score);
-    }
+    }*/
+    selectedMode->handle_inputs(event);
 }
 
 void PlayingState::update(float dt) noexcept

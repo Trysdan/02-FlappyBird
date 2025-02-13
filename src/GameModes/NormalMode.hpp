@@ -1,3 +1,5 @@
+#pragma once
+
 #include <src/GameModes/GameMode.hpp>
 
 class NormalMode: public GameMode

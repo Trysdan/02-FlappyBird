@@ -37,4 +37,6 @@ private:
     float vy;
     sf::Sprite sprite;
     bool jumping{false};
+
+    friend class HardMode;
 };
