@@ -15,6 +15,8 @@
 #include <src/states/PlayingState.hpp>
 #include <src/states/PauseState.hpp>
 
+bool Game::keyIsPressed = false;
+
 Game::Game()
     : render_window{sf::VideoMode{Settings::WINDOW_WIDTH, Settings::WINDOW_HEIGHT}, "Flappy Bird", sf::Style::Close},
       render_texture{},
@@ -52,6 +54,11 @@ void Game::handle_inputs(const sf::Event& event) noexcept
     state_machine.handle_inputs(event);
 }
 
+bool Game::key_is_pressed() noexcept
+{
+    return keyIsPressed;
+}
+
 void Game::update(float dt) noexcept
 {
     state_machine.update(dt);
@@ -80,11 +87,20 @@ void Game::exec() noexcept
 
         while (get_window().pollEvent(event))
         {
-            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+            if(event.type == sf::Event::KeyPressed)
+            {
+                Game::keyIsPressed = true;
+            }
+            else if(event.type == sf::Event::KeyReleased)
+            {
+                Game::keyIsPressed = false;
+            }
+
+            if (event.type == sf::Event::Closed || (keyIsPressed && event.key.code == sf::Keyboard::Escape))
             {
                 get_window().close();
             }
-            else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::KeyPressed)
+            else if (event.type == sf::Event::MouseButtonPressed || Game::keyIsPressed)
             {
                 handle_inputs(event);
             }

@@ -12,6 +12,7 @@
 #include <src/text_utilities.hpp>
 #include <src/states/StateMachine.hpp>
 #include <src/states/TitleScreenState.hpp>
+#include<src/Game.hpp>
 
 TitleScreenState::TitleScreenState(StateMachine* sm) noexcept
     : BaseState{sm}, world{}
@@ -21,7 +22,7 @@ TitleScreenState::TitleScreenState(StateMachine* sm) noexcept
 
 void TitleScreenState::handle_inputs(const sf::Event& event) noexcept
 {
-    if (event.key.code == sf::Keyboard::Return)
+    if (Game::key_is_pressed() && event.key.code == sf::Keyboard::Return)
     {
         state_machine->change_state("count_down");
     }

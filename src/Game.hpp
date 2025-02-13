@@ -28,6 +28,8 @@ public:
 
     void handle_inputs(const sf::Event& event) noexcept;
 
+    static bool key_is_pressed() noexcept;
+
     void update(float dt) noexcept;
 
     void render() noexcept;
@@ -45,4 +47,6 @@ private:
 
     bool bird_is_dead{false};
     int score{0};
+
+    static bool keyIsPressed;
 };

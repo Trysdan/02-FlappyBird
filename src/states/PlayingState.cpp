@@ -12,6 +12,7 @@
 #include <src/text_utilities.hpp>
 #include <src/states/StateMachine.hpp>
 #include <src/states/PlayingState.hpp>
+#include <src/Game.hpp>
 
 PlayingState::PlayingState(StateMachine* sm) noexcept
     : BaseState{sm}
@@ -45,7 +46,7 @@ void PlayingState::handle_inputs(const sf::Event& event) noexcept
         bird->jump();
     }
 
-    if (event.key.code == sf::Keyboard::Return)
+    if (Game::key_is_pressed() && event.key.code == sf::Keyboard::Return)
     {
         state_machine->change_state("pause", world, bird, score);
     }
