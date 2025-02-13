@@ -1,3 +1,4 @@
+#include <Settings.hpp>
 #include <src/Game.hpp>
 #include <src/GameModes/NormalMode.hpp>
 #include <src/states/PlayingState.hpp>
@@ -11,7 +12,7 @@ void NormalMode::handle_inputs(const sf::Event& event) noexcept
         ps->bird->jump();
     }
 
-    if (Game::key_is_pressed() && event.key.code == sf::Keyboard::Return)
+    if (Game::key_is_pressed() && event.key.code == Settings::PAUSE_KEY)
     {
         ps->state_machine->change_state("pause", ps->world, ps->bird, ps->score);
     }

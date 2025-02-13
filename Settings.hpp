@@ -37,12 +37,18 @@ struct Settings
     static constexpr float BACKGROUND_LOOPING_POINT{1157.f};
     static constexpr float MAIN_SCROLL_SPEED{100.f};
     static constexpr float BACK_SCROLL_SPEED{50.f}; // MAIN_SCROLL_SPEED / 2
+    static constexpr float BIRD_SPEED{100.f};
     static constexpr float GRAVITY{980.f};
     static constexpr float JUMP_TAKEOFF_SPEED{GRAVITY / 6.f};
     static constexpr float TIME_TO_SPAWN_LOGS{1.5f};
     static constexpr int MEDIUM_TEXT_SIZE{18};
     static constexpr int HUGE_TEXT_SIZE{56};
     static constexpr int FLAPPY_TEXT_SIZE{28};
+
+    //Keyboard Controls
+    static constexpr sf::Keyboard::Key LEFT_KEY{sf::Keyboard::A};
+    static constexpr sf::Keyboard::Key RIGHT_KEY{sf::Keyboard::D};
+    static constexpr sf::Keyboard::Key PAUSE_KEY{sf::Keyboard::Return};
 
     static std::unordered_map<std::string, sf::Texture> textures;
     static std::unordered_map<std::string, sf::SoundBuffer> sound_buffers;

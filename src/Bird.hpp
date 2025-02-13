@@ -35,6 +35,7 @@ private:
     float width;
     float height;
     float vy;
+    float vx;
     sf::Sprite sprite;
     bool jumping{false};
 
