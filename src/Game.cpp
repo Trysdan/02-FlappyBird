@@ -68,3 +68,31 @@ void Game::render() noexcept
     render_window.draw(render_sprite);
     render_window.display();
 }
+
+void Game::exec() noexcept
+{
+    sf::Clock clock;
+    sf::Time dt;
+
+    while (get_window().isOpen())
+    {
+        sf::Event event;
+
+        while (get_window().pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed || (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape))
+            {
+                get_window().close();
+            }
+            else if (event.type == sf::Event::MouseButtonPressed || event.type == sf::Event::KeyPressed)
+            {
+                handle_inputs(event);
+            }
+        }
+
+        update(dt.asSeconds());
+        render();
+
+        dt = clock.restart();
+    }
+}

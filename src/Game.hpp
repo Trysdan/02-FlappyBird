@@ -32,6 +32,8 @@ public:
 
     void render() noexcept;
 
+    void exec() noexcept;
+
 private:
     sf::RenderWindow render_window;
     sf::RenderTexture render_texture;
