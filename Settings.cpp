@@ -72,6 +72,13 @@ void Settings::load_textures()
     }
 
     Settings::textures["Log"] = texture;
+
+    if(!texture.loadFromFile(Settings::GRAPHICS_PATH + "bubble.jpg"))
+    {
+        throw std::runtime_error{"Error loading texture graphics/bubble.jpg"};
+    }
+
+    Settings::textures["bubble"] = texture;
 }
 
 void Settings::load_sounds()
