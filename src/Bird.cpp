@@ -46,11 +46,13 @@ void Bird::update(float dt) noexcept
     x += vx * dt;
     vx = 0;
     sprite.setPosition(x, y);
+    powerUps[currentPowerUp]->update(dt);
 }
 
 void Bird::render(sf::RenderTarget& target) const noexcept
 {
     target.draw(sprite);
+    powerUps[currentPowerUp]->render(target);
 }
 
 void Bird::handle_log_collision() noexcept

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <memory>
+#include <SFML/Graphics.hpp>
 
 class Bird;
 class World;
@@ -18,6 +19,8 @@ public:
     virtual void solve_collision() noexcept {}
 
     virtual void exit() noexcept {}
+
+    virtual void render(sf::RenderTarget& target) noexcept{}
 
 protected:
     Bird* bird;

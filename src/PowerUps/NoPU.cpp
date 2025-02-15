@@ -6,6 +6,8 @@
 
 NoPU::NoPU(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): PowerUp{_bird,_world,sm} {}
 
+void NoPU::update(float dt) noexcept{}
+
 void NoPU::enter() noexcept
 {
     Settings::music.play();
@@ -23,4 +25,7 @@ void NoPU::solve_collision() noexcept
 }
 
 void NoPU::exit() noexcept
+{}
+
+void NoPU::render(sf::RenderTarget& target) noexcept
 {}
