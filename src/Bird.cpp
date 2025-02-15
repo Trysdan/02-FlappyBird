@@ -60,6 +60,10 @@ void Bird::handle_log_collision() noexcept
 
 void Bird::set_power_up_to(PUEnum powerUp) noexcept
 {
+    if(currentPowerUp == powerUp)
+    {
+        return;
+    }
     powerUps[currentPowerUp]->exit();
     currentPowerUp = powerUp;
     powerUps[currentPowerUp]->enter();

@@ -25,6 +25,12 @@ void HardMode::handle_inputs(const sf::Event& event) noexcept
             case Settings::PAUSE_KEY:
                 ps->state_machine->change_state("pause", ps->world, ps->bird, ps->score);
                 break;
+            case sf::Keyboard::P:
+                ps->bird->set_power_up_to(BubblePowerUp);
+                break;
+            case sf::Keyboard::N:
+                ps->bird->set_power_up_to(NoPowerUp);
+                break;
             default:
                 break;
         }
