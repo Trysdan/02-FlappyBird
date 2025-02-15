@@ -11,6 +11,8 @@ class PowerUp
 public:
     PowerUp(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): bird{_bird}, world{_world}, stateMachine{sm} {}
 
+    virtual void update(float dt){}
+
     virtual void enter() noexcept {}
 
     virtual void solve_collision() noexcept {}

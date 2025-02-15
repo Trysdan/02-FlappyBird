@@ -11,11 +11,20 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <src/PowerUps/NoPU.hpp>
+#include <src/PowerUps/BubblePU.hpp>
+#include <array>
+
+enum PUEnum
+{
+    NoPowerUp = 0,
+    BubblePowerUp = 1
+};
 
 class Bird
 {
 public:
-    Bird(float _x, float _y, float w, float h) noexcept;
+    Bird(float _x, float _y, float w, float h, std::shared_ptr<World> world, StateMachine* sm) noexcept;
 
     Bird(const Bird&) = delete;
 
@@ -29,6 +38,12 @@ public:
 
     void render(sf::RenderTarget& target) const noexcept;
 
+    void handle_log_collision() noexcept;
+
+    void set_power_up_to(PUEnum powerUp) noexcept;
+
+    void set_ghostly_bird_to(bool on) noexcept;
+
 private:
     float x;
     float y;
@@ -40,4 +55,10 @@ private:
     bool jumping{false};
 
     friend class HardMode;
+
+    friend NoPU;
+    friend BubblePU;
+
+    PUEnum currentPowerUp;
+    std::array<std::unique_ptr<PowerUp>,2> powerUps;
 };

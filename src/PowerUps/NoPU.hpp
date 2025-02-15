@@ -1,3 +1,5 @@
+#pragma once
+
 #include <src/PowerUps/PowerUp.hpp>
 
 class NoPU: public PowerUp

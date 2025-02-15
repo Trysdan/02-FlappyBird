@@ -1,3 +1,5 @@
+#pragma once
+
 #include <src/PowerUps/PowerUp.hpp>
 #include <SFML/System.hpp>
 
@@ -13,5 +15,5 @@ public:
     void exit() noexcept override;
     
 private:
-    sf::Time countDown;
+    float countDown;
 };

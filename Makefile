@@ -1,10 +1,10 @@
 CXX = clang++ -std=c++17
 
-INCLUDE = -I.
+INCLUDE = -g -I.
 
 BUILD_DIR = build
 
-OBJ_RULES = text_utilities.o Settings.o Game.o Bird.o Log.o LogPair.o World.o StateMachine.o TitleScreenState.o CountDownState.o PlayingState.o PauseState.o NormalMode.o HardMode.o Bubble.o
+OBJ_RULES = text_utilities.o Settings.o Game.o Bird.o Log.o LogPair.o World.o StateMachine.o TitleScreenState.o CountDownState.o PlayingState.o PauseState.o NormalMode.o HardMode.o Bubble.o NoPU.o BubblePU.o
 
 LIBS = -lsfml-graphics -lsfml-audio -lsfml-window -lsfml-system $(BUILD_DIR)/*.o
 
@@ -55,6 +55,12 @@ HardMode.o: $(BUILD_DIR) src/GameModes/HardMode.hpp src/GameModes/HardMode.cpp
 
 Bubble.o: $(BUILD_DIR) src/Bubble.hpp src/Bubble.cpp
 	$(CXX) -c $(INCLUDE) src/Bubble.cpp -o $(BUILD_DIR)/$@
+
+NoPU.o: $(BUILD_DIR) src/PowerUps/NoPU.hpp src/PowerUps/NoPU.cpp
+	$(CXX) -c $(INCLUDE) src/PowerUps/NoPU.cpp -o $(BUILD_DIR)/$@
+
+BubblePU.o: $(BUILD_DIR) src/PowerUps/BubblePU.hpp src/PowerUps/BubblePU.cpp
+	$(CXX) -c $(INCLUDE) src/PowerUps/BubblePU.cpp -o $(BUILD_DIR)/$@
 
 $(BUILD_DIR):
 	mkdir -p $@
