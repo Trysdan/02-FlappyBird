@@ -5,7 +5,7 @@
 #include <src/text_utilities.hpp>
 #include <src/states/StateMachine.hpp>
 
-BubblePU::BubblePU(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): PowerUp{_bird,_world,sm}, countDown{30.f}
+BubblePU::BubblePU(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): PowerUp{_bird,_world,sm}, countDown{10.f}
 {
 }
 
