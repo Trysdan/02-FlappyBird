@@ -9,5 +9,4 @@ public:
     HardMode(){}
 
     void handle_inputs(const sf::Event& event) noexcept override;
-    void getState() noexcept override;
 };

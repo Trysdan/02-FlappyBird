@@ -20,7 +20,6 @@ public:
         ps = playingState;
     }
 
-    virtual void getState() noexcept {}
 protected:
     PlayingState* ps;
 };
