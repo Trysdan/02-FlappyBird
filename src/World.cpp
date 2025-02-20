@@ -60,19 +60,7 @@ void World::update(float dt) noexcept
 {
     if (generate_logs)
     {
-        logs_spawn_timer += dt;
-
-        if (logs_spawn_timer >= Settings::TIME_TO_SPAWN_LOGS)
-        {
-            logs_spawn_timer = 0.f;
-
-            std::uniform_int_distribution<int> dist{-20, 20};
-            float y = std::max(-Settings::LOG_HEIGHT + 10, std::min(last_log_y + dist(rng), Settings::VIRTUAL_HEIGHT + 90 - Settings::LOG_HEIGHT));
-
-            last_log_y = y;
-
-            logs.push_back(log_factory.create(Settings::VIRTUAL_WIDTH, y));
-        }
+        selectedMode->generateLogs(dt, this);
     }
 
     background_x += -Settings::BACK_SCROLL_SPEED * dt;

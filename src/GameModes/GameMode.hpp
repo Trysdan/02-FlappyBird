@@ -1,11 +1,13 @@
 #pragma once
 
 #include <SFML/Window.hpp>
+#include <list>
 #include <memory>
-#include<iostream>
+#include <random>
 
 
 class PlayingState;
+class World;
 
 class GameMode
 {
@@ -19,6 +21,8 @@ public:
     {
         ps = playingState;
     }
+
+    virtual void generateLogs(float dt, World* world) noexcept {}
 
 protected:
     PlayingState* ps;

@@ -9,4 +9,8 @@ public:
     HardMode(){}
 
     void handle_inputs(const sf::Event& event) noexcept override;
+    void generateLogs(float dt, World* world) noexcept override;
+
+private:
+    float timeToSpawnLogs;
 };
