@@ -56,8 +56,8 @@ void HardMode::generateLogs(float dt, World* world) noexcept
 
         world->logs.push_back(world->log_factory.create(Settings::VIRTUAL_WIDTH, y));
 
-        std::normal_distribution<float> disTime(Settings::TIME_TO_SPAWN_LOGS, 1.0);
-        timeToSpawnLogs = disTime(world->rng);
+        std::uniform_real_distribution<float> distTime(0.5, 3.0);
+        timeToSpawnLogs = distTime(world->rng);
 
         std::cout << "time: " << timeToSpawnLogs << std::endl;
     }
