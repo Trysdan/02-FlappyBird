@@ -17,8 +17,3 @@ void NormalMode::handle_inputs(const sf::Event& event) noexcept
         ps->state_machine->change_state("pause", ps->selectedMode, ps->world, ps->bird, ps->score);
     }
 }
-
-void NormalMode::getState() noexcept
-{
-    std::cout << "Normal mode" << std::endl;
-}

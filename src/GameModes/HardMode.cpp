@@ -36,8 +36,3 @@ void HardMode::handle_inputs(const sf::Event& event) noexcept
         }
     }
 }
-
-void HardMode::getState() noexcept
-{
-    std::cout << "Hard mode" << std::endl;
-}
