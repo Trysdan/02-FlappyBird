@@ -121,3 +121,8 @@ void World::render(sf::RenderTarget& target) const noexcept
 
     target.draw(ground);
 }
+
+void World::setGameMode(std::shared_ptr<GameMode> _selectedMode) noexcept
+{
+    selectedMode = _selectedMode;
+}

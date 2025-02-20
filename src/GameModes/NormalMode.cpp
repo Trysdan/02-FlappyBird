@@ -14,6 +14,11 @@ void NormalMode::handle_inputs(const sf::Event& event) noexcept
 
     if (Game::key_is_pressed() && event.key.code == Settings::PAUSE_KEY)
     {
-        ps->state_machine->change_state("pause", ps->world, ps->bird, ps->score);
+        ps->state_machine->change_state("pause", ps->selectedMode, ps->world, ps->bird, ps->score);
     }
+}
+
+void NormalMode::getState() noexcept
+{
+    std::cout << "Normal mode" << std::endl;
 }

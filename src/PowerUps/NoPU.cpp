@@ -1,10 +1,12 @@
 #include <Settings.hpp>
-#include <src/PowerUps/NoPU.hpp>
 #include <src/Bird.hpp>
 #include <src/World.hpp>
+#include <src/PowerUps/NoPU.hpp>
 #include <src/states/StateMachine.hpp>
 
-NoPU::NoPU(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): PowerUp{_bird,_world,sm} {}
+NoPU::NoPU(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): PowerUp{_bird,_world,sm}
+{
+}
 
 void NoPU::update(float dt) noexcept{}
 
@@ -20,7 +22,7 @@ void NoPU::solve_collision() noexcept
     {
         Settings::sounds["explosion"].play();
         Settings::sounds["hurt"].play();
-        stateMachine->change_state("count_down");
+        stateMachine->change_state("count_down", world->selectedMode);
     }
 }
 

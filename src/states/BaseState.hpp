@@ -13,6 +13,8 @@
 #include <memory>
 
 #include <SFML/Graphics.hpp>
+#include <src/GameModes/NormalMode.hpp>
+#include <src/GameModes/HardMode.hpp>
 
 class StateMachine;
 class World;
@@ -21,11 +23,11 @@ class Bird;
 class BaseState
 {
 public:
-    BaseState(StateMachine* sm) : state_machine(sm) {}
+    BaseState(StateMachine* sm) : state_machine(sm), selectedMode{ std::make_shared<GameMode>() } {}
 
     virtual ~BaseState() {}
 
-    virtual void enter(std::shared_ptr<World> world, std::shared_ptr<Bird> bird, int _score) noexcept {}
+    virtual void enter(std::shared_ptr<World> world, std::shared_ptr<Bird> bird, std::shared_ptr<GameMode> selectedMode, int _score) noexcept {}
 
     virtual void exit() noexcept {}
 
@@ -35,7 +37,17 @@ public:
 
     virtual void render(sf::RenderTarget& target) const noexcept {}
 
+    void setGameMode(const std::shared_ptr<GameMode>& mode) noexcept
+    {
+        selectedMode = mode;
+    }
+
 
 protected:
     StateMachine* state_machine;
+
+    friend class NormalMode;
+    friend class HardMode;
+
+    std::shared_ptr<GameMode> selectedMode;
 };

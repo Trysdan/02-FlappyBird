@@ -1,3 +1,4 @@
+#include <src/World.hpp>
 #include <src/PowerUps/BubblePU.hpp>
 #include <src/Bird.hpp>
 #include <Settings.hpp>
@@ -5,7 +6,8 @@
 #include <src/states/StateMachine.hpp>
 
 BubblePU::BubblePU(Bird* _bird, std::shared_ptr<World> _world, StateMachine* sm): PowerUp{_bird,_world,sm}, countDown{30.f}
-{}
+{
+}
 
 void BubblePU::update(float dt) noexcept
 {
@@ -29,7 +31,7 @@ void BubblePU::solve_collision() noexcept
         Settings::sounds["explosion"].play();
         Settings::sounds["hurt"].play();
         bird->set_power_up_to(NoPowerUp);
-        stateMachine->change_state("count_down");
+        stateMachine->change_state("count_down", world->selectedMode);
    }
 }
 

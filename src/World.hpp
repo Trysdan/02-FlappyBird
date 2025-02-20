@@ -18,6 +18,8 @@
 
 #include <src/Factory.hpp>
 #include <src/LogPair.hpp>
+#include <src/GameModes/NormalMode.hpp>
+#include <src/GameModes/HardMode.hpp>
 
 class World
 {
@@ -37,6 +39,10 @@ public:
     void update(float dt) noexcept;
 
     void render(sf::RenderTarget& target) const noexcept;
+
+    void setGameMode(std::shared_ptr<GameMode> _selectedMode) noexcept;
+
+    std::shared_ptr<GameMode> selectedMode;
 private:
     bool generate_logs;
 
@@ -54,4 +60,7 @@ private:
 
     float logs_spawn_timer{0.f};
     float last_log_y{0.f};
+
+    friend class NormalMode;
+    friend class HardMode;
 };

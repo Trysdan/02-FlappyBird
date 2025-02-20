@@ -23,7 +23,7 @@ void HardMode::handle_inputs(const sf::Event& event) noexcept
                 ps->bird->vx = Settings::BIRD_SPEED;
                 break;
             case Settings::PAUSE_KEY:
-                ps->state_machine->change_state("pause", ps->world, ps->bird, ps->score);
+                ps->state_machine->change_state("pause", ps->selectedMode, ps->world, ps->bird, ps->score);
                 break;
             case sf::Keyboard::P:
                 ps->bird->set_power_up_to(BubblePowerUp);
@@ -35,4 +35,9 @@ void HardMode::handle_inputs(const sf::Event& event) noexcept
                 break;
         }
     }
+}
+
+void HardMode::getState() noexcept
+{
+    std::cout << "Hard mode" << std::endl;
 }

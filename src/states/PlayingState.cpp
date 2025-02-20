@@ -17,12 +17,16 @@
 PlayingState::PlayingState(StateMachine* sm) noexcept
     : BaseState{sm}
 {
-
+    selectedMode = std::make_shared<NormalMode>(this);
 }
 
-void PlayingState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _bird, int _score) noexcept
+void PlayingState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _bird, std::shared_ptr<GameMode> _selectedMode, int _score) noexcept
 {
+    selectedMode = _selectedMode;
+    selectedMode->setPlayingState(this);
+
     world = _world;
+    world->setGameMode(selectedMode);
     world->reset(true);
     score = _score;
     
@@ -37,7 +41,6 @@ void PlayingState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _b
     {
         bird = _bird;
     }
-    selectedMode = std::make_unique<HardMode>(this);
 }
 
 void PlayingState::handle_inputs(const sf::Event& event) noexcept
@@ -64,4 +67,9 @@ void PlayingState::render(sf::RenderTarget& target) const noexcept
     world->render(target);
     bird->render(target);
     render_text(target, 20, 10, "Score: " + std::to_string(score), Settings::FLAPPY_TEXT_SIZE, "flappy", sf::Color::White);
+}
+
+void PlayingState::setGameMode(std::shared_ptr<GameMode> _selectedMode) noexcept
+{
+    selectedMode = _selectedMode;
 }

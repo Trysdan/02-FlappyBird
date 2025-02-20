@@ -19,9 +19,10 @@ CountDownState::CountDownState(StateMachine* sm) noexcept
 
 }
 
-void CountDownState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _bird, int _score) noexcept
+void CountDownState::enter(std::shared_ptr<World> _world, std::shared_ptr<Bird> _bird, std::shared_ptr<GameMode> _selectedMode, int _score) noexcept
 {
     world = std::make_shared<World>(false);
+    selectedMode = _selectedMode;
 }
 
 void CountDownState::update(float dt) noexcept
@@ -35,7 +36,7 @@ void CountDownState::update(float dt) noexcept
 
         if (counter == 0)
         {
-            state_machine->change_state("playing", world);
+            state_machine->change_state("playing", selectedMode, world);
         }
     }
 
